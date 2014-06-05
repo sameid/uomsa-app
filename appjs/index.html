@@ -3,7 +3,8 @@
   <head>
     <title>My App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="js/app.min.css">
+    <link rel="stylesheet" href="css/app.min.css">
+    
     <style>
       /* TODO */
     </style>
@@ -12,22 +13,34 @@
   <body>
     <div class="app-page" data-page="home">
       <div class="app-topbar">
-        <div class="app-title">Home page</div>
+        <div class="app-title">uomsa</div>
       </div>
       <div class="app-content">
         <div class="app-section">
-          <div class="app-button" data-target="page2">Go to Page 2</div>
+          <div class="app-button" data-target="view-events">Events</div>
         </div>
       </div>
     </div>
 
-    <div class="app-page" data-page="page2">
+    <div class="app-page" data-page="view-events">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
-        <div class="app-title">Page 2</div>
+        <div class="app-title">Events</div>
       </div>
       <div class="app-content">
-        Page 2 is lonely
+        <div class="app-section">
+          <h1>
+            upcoming events
+          </h1>
+          <p>none</p>
+        </div>
+        <div class="app-section">
+          <h1>
+            ongoing events
+          </h1>
+          <p>none</p>
+        </div>
+        
       </div>
     </div>
 
@@ -38,7 +51,7 @@
         // put stuff here
       });
 
-      App.controller('page2', function (page) {
+      App.controller('view-events', function (page) {
         // put stuff here
       });
 
