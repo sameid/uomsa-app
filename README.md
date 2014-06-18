@@ -1,12 +1,12 @@
 # uomsa
 
-To run the API locally you must install the following:
+To run the APP locally you must install the following:
 - [MongoDB v2.4.8](http://www.mongodb.org/downloads) (or above)
 - [Node.js v0.10.21](http://nodejs.org/download/) (or above)
 
 ### Running the App 
 
-- Make sure you have the api running -> (uoMSA-API)[https://github.com/uomsa/uomsa-api]
+- Make sure you have the api running -> [uoMSA-API](https://github.com/uomsa/uomsa-api)
 - Clone this repo
 ```
 git clone https://github.com/uomsa/app.git
