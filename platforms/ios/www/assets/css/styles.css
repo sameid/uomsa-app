@@ -1,0 +1,78 @@
+.events .label .title {
+    float: left;
+    height: 50px;
+    font-size: 21px;
+    font-weight: 100;
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+.event-list-wrap {
+    position: relative;
+    height: 309px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.event-list {
+    height: 295px;
+    background: #E8EAEF;
+}
+
+.event-list .event-item {
+    position: relative;
+    float: left;
+    margin: 2px 0 2px 12px;
+    height: 294px;
+    width: 187px;
+    overflow: hidden;
+    background-color: #FFF;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    -webkit-box-shadow: -1px -1px 1px rgba(0,0,0,.1),1px 1px 1px rgba(0,0,0,.1);
+    box-shadow: -1px -1px 1px rgba(0,0,0,.1),1px 1px 1px rgba(0,0,0,.1);
+}
+
+.event-list .event-item img {
+    display: block;
+    height: 255px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.event-list .event-item .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 295px;
+    width: 187px;
+    overflow: hidden;
+}
+
+.event-list .event-item .text span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    overflow: hidden;
+}
+
+.event-list .event-item .text span {
+    display: block;
+    margin: 260px auto 0;
+    height: 32px;
+    width: 170px;
+    color: #777;
+    font-size: 14px;
+    line-height: 32px;
+}
+
+@font-face {
+    font-family: uomsaLogoFont;
+    src: url(../font/uomsaLogo.ttf);
+}
+
+.home-title {
+    font-family: uomsaLogoFont;
+}
+
+
