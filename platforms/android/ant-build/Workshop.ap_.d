@@ -45,6 +45,12 @@
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/css/pageslider.css \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/css/styles.css \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/font/uomsaLogo.ttf \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f1.jpg \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f2.jpg \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f3.jpg \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f4.jpg \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f5.jpg \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/f6.jpg \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/filler.jpg \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/pics/logo.jpg \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/assets/topcoat/css \
@@ -100,6 +106,7 @@
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/handlebars.js \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/iscroll.js \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/jquery.js \
+/Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/jquery.transit.min.js \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/pageslider.js \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/lib/zepto.js \
 /Users/Sameid/Dropbox/uomsa-app/workshop/platforms/android/assets/www/plugins/org.apache.cordova.device \

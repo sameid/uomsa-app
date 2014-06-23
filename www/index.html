@@ -9,7 +9,8 @@
 </head>
 <body>
 
-	<div class="app-page" data-page="home">
+
+	<div class="app-page home-a" data-page="home">
 		<div class="app-topbar red">
 			<div class="app-title home-title">uomsa</div>
 			<div class="right app-button " data-target="login">Sign In</div> 
@@ -171,18 +172,19 @@
 				Become a uomsa member to attend events, classes, or join activities!
 			</div>
 			<div class="app-section">
-  				<input class="app-input" placeholder="Username">
-  				<input class="app-input" placeholder="Password">
-
+  				<input class="app-input" placeholder="Email" name="username">
+  				<input class="app-input" type="password" placeholder="Password" name="password">
   				<div class="app-button blue">Sign In</div>
 			</div>
 		</div>
 	</div>
 
 
+	<!-- <div class="splash"></div> -->
 
 	<script src="cordova.js"></script>
 	<script src="lib/jquery.js"></script>
+	<script src="lib/jquery.transit.min.js"></script>	
 	<script src="lib/fastclick.js"></script>
 	<script src="js/adapters/memory-adapter.js"></script>
 	<script src="lib/app.min.js"></script>
