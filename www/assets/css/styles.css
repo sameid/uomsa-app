@@ -1,3 +1,22 @@
+@font-face {
+    font-family: uomsaLogoFont;
+    src: url(../font/uomsaLogo.ttf);
+}
+
+@font-face {
+    font-family: exoRegular;
+    src: url(../font/ExoRegular.ttf);
+}
+
+body
+{
+    font-family: exoRegular;
+}
+
+.home-title {
+    font-family: uomsaLogoFont;
+}
+
 .events .label .title {
     float: left;
     height: 50px;
@@ -66,13 +85,53 @@
     line-height: 32px;
 }
 
-@font-face {
-    font-family: uomsaLogoFont;
-    src: url(../font/uomsaLogo.ttf);
+.no-bullets
+{
+    list-style-type: none;
 }
 
-.home-title {
-    font-family: uomsaLogoFont;
+.event-item-details {
+    position: relative;
+    margin: 2px 0 2px 12px;
+    height: 294px;
+    width: 187px;
+    overflow: hidden;
+    background-color: #FFF;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    -webkit-box-shadow: -1px -1px 1px rgba(0,0,0,.1),1px 1px 1px rgba(0,0,0,.1);
+    box-shadow: -1px -1px 1px rgba(0,0,0,.1),1px 1px 1px rgba(0,0,0,.1);
 }
 
+.event-item-details img {
+    display: block;
+    height: 255px;
+    width: 100%;
+    overflow: hidden;
+}
 
+.event-item-details .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 295px;
+    width: 187px;
+    overflow: hidden;
+}
+
+.event-item-details .text span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    overflow: hidden;
+}
+
+.event-item-details .text span {
+    display: block;
+    margin: 260px auto 0;
+    height: 32px;
+    width: 170px;
+    color: #777;
+    font-size: 14px;
+    line-height: 32px;
+}
