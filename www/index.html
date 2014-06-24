@@ -175,10 +175,68 @@
   				<input class="app-input" placeholder="Email" name="username">
   				<input class="app-input" type="password" placeholder="Password" name="password">
   				<div class="app-button blue">Sign In</div>
+  				<div class="app-button blue" data-target="Register">Sign Up</div>
 			</div>
 		</div>
 	</div>
 
+	<div class="app-page" data-page="Register">
+		<div class="app-topbar red">
+			<div class="app-button left" data-back data-autotitle></div>
+			<div class="app-title">Registration</div>
+		</div>
+		<div class="app-content">
+			<div class="app-section">
+				Sign up to become an MSA member to attend events, classes, or join activities!
+			</div>
+			<div class="app-section">
+  				<input class="app-input" placeholder="First Name">
+  				<input class="app-input" placeholder="Last Name">
+  				<input class="app-input" placeholder="E-mail">
+  				<input class="app-input" placeholder="Password">
+  				<input class="app-input" placeholder="Confirm Password">
+  				<input class="app-input" placeholder="Year of Study">
+  				<input class="app-input" placeholder="Program of Study">
+  				
+
+             <script type="text/javascript">
+              window.onload = function() {
+              document.getElementById('ifYes').style.display = 'none';
+              document.getElementById('ifNo').style.display = 'none';
+            }
+             function yesnoCheck() {
+              if (document.getElementById('yesCheck').checked) {
+               document.getElementById('ifYes').style.display = 'block';
+               document.getElementById('ifNo').style.display = 'none';
+               document.getElementById('redhat1').style.display = 'none';
+               document.getElementById('aix1').style.display = 'none';
+             } 
+              else if(document.getElementById('noCheck').checked) {
+                document.getElementById('ifNo').style.display = 'block';
+                document.getElementById('ifYes').style.display = 'none';
+                document.getElementById('redhat1').style.display = 'none';
+                document.getElementById('aix1').style.display = 'none';
+             }
+           }
+
+            </script>
+
+             Student in Ottawa University :
+             <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"/> Yes
+             <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/> No
+             <br>
+             <div id="ifYes" style="display:none"><br>
+             <p>Please enter your Student Number :</p> <br>
+             <input class="app-input" placeholder="Student Number">
+             </div>
+             <div id="ifNo" style="display:none"> <br>
+             <p>Thank you, Please click on Submit!</p> <br>
+             </div>
+
+  				<div class="app-button blue">Submit</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- <div class="splash"></div> -->
 
