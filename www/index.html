@@ -14,9 +14,9 @@
 <body>
     <div class="app-page" data-page="home">
         <div class="app-topbar dark-blue">
-            <div class="app-button app-menu">Menu</div>
-            <!-- <div class="app-title home-title">uomsa</div> -->
-            <div class="app-button right" data-target="login">Login</div>
+            <div class="app-title home-title">uomsa</div>
+            <div class="right app-button  sign-in-home" data-target="login">Sign In</div>
+            <div class="right app-button account-home" data-target="account">My Account</div>
         </div>
         <div class="app-content app-scrollable">
             <div class="label-app-section">
@@ -141,24 +141,46 @@
     </div>
 
     <div class="app-page" data-page="login">
+
         <div class="app-topbar red">
             <div class="app-button left" data-back data-autotitle></div>
             <div class="app-title">Home</div>
         </div>
         <div class="app-content">
+            <div class="app-section creds">
+                <input class="app-input username" placeholder="Email" >
+                <input class="app-input password" placeholder="Password" type="password" >
+                <div class="app-section app-button blue sign-in" >Sign In</div>
+            </div>
+
+            <div id="spinner" class="app-section" style="display:none;height:120px;">
+            </div>
+
             <div class="app-section">
                 Become a uomsa member to attend events, classes, or join activities!
             </div>
-            <div class="app-section">
-                <input class="app-input" placeholder="Email" name="username">
-                <input class="app-input" type="password" placeholder="Password" name="password">
-                <div class="app-button blue">Sign In</div>
-                <div class="app-button green" data-target="Register">Register</div>
-            </div>
+            <div class="app-section app-button green" data-target="register">Register</div>
         </div>
     </div>
 
-    <div class="app-page" data-page="Register">
+    <div class="app-page" data-page="account">
+        <div class="app-topbar red">
+            <div class="app-button left" data-back data-autotitle></div>
+            <div class="app-title">My Account</div>
+        </div>
+         <div class="app-content">
+                <div class="app-section app-list">
+                    <li style="margin-left:-10px;">Account Details</li>
+                    <li class="name"></li>
+                    <li class="id"></li>
+                    <li class="email"></li>
+                </div> 
+                <div class="app-section app-button blue sign-out" >Sign out</div>
+            
+        </div>
+    </div>
+
+    <div class="app-page" data-page="register">
         <div class="app-topbar red">
             <div class="app-button left" data-back data-autotitle></div>
             <div class="app-title">Registration</div>
@@ -168,13 +190,13 @@
                 Sign up to become an MSA member to attend events, classes, or join activities!
             </div>
             <div class="app-section">
-                <input class="app-input" placeholder="First Name">
-                <input class="app-input" placeholder="Last Name">
-                <input class="app-input" placeholder="E-mail">
-                <input class="app-input" placeholder="Password">
-                <input class="app-input" placeholder="Confirm Password">
-                <input class="app-input" placeholder="Year of Study">
-                <input class="app-input" placeholder="Program of Study">
+                <input class="app-input" placeholder="First Name" class="firstname">
+                <input class="app-input" placeholder="Last Name" class="lastname">
+                <input class="app-input" placeholder="E-mail" class="email">
+                <input class="app-input" type="password" placeholder="Password" class="password">
+                <input class="app-input" type="password" placeholder="Confirm Password" class="confirm-pass">
+                <input class="app-input" placeholder="Year of Study" class="year">
+                <input class="app-input" placeholder="Program of Study" class="program">
 
 
                 <script type="text/javascript">
@@ -254,15 +276,20 @@
     <!-- <div class="splash"></div> -->
 
     <script src="cordova.js"></script>
+
     <script src="lib/jquery.js"></script>
     <script src="lib/jquery.transit.min.js"></script>
     <script src="lib/fastclick.js"></script>
     <script src="js/adapters/memory-adapter.js"></script>
     <script src="lib/app.min.js"></script>
+    <script src="lib/spin.js"></script>
+
     <script src="js/app.js"></script>
     <script src="js/controllers/home.js"></script>
     <script src="js/controllers/event.js"></script>
     <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/register.js"></script>
+    <script src="js/controllers/account.js"></script>
     <script>
     try {
         App.restore();

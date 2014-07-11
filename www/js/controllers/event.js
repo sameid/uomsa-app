@@ -1,6 +1,6 @@
-$(document).ready(function(){
+var api = document.api;
 
-var api = {
+api.event = {
 	getEventById: function(id){
 		return {};
 	}
@@ -14,4 +14,3 @@ App.controller('event', function (page, id) {
 	//load ui
 });
 
-});

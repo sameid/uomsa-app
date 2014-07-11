@@ -1,50 +1,87 @@
-$(document).ready(function (){
+var api = document.api;
 
-//Local functions
-var eventView = function (id, img, title){
-
-	return ('<div class="event-item" id="'+id+'">'+
-		'<img src="' +img+ '"></img>'+
-		'<div class="text">'+
-		'<span>'+title+'<span>'+
-		'</div>'+
-		'</div>');
+api.home = {
+    upcomingEvents : function(callback){
+        $.ajax({
+            type:'GET',
+            url: document.config.host + '/upcoming_events',
+            success:function(data){
+                callback(null, data);
+            },
+            error:function(err){
+                callback(err, null);
+            },
+            crossDomain: true,
+            dataType: 'jsonp'
+        });
+    },
+    subscribedEvents : function(hash, callback){
+        $.ajax({
+            type:'GET',
+            url: document.config.host + '/subscribed_events',
+            data: {
+                "hash":hash,
+            },
+            success:function(data){
+                callback(null, data);
+            },
+            error:function(err){
+                callback(err, null);
+            },
+            crossDomain: true,
+            dataType: 'jsonp'
+        });
+    }
 }
 
-//REST Api Stuff
-var api = {
-	getUpcomingEvents : function(){
-		//make rest-api call
-	},
-	getSubscribedEvents : function(){
-		//make rest-api call
-	}
+var home_utils = {
+    eventView : function (id, img, title){
+        return ('<div class="event-item" id="'+id+'">'+
+        '<img src="' +img+ '"></img>'+
+        '<div class="text">'+
+        '<span>'+title+'<span>'+
+        '</div>'+
+        '</div>');
+    }
 }
-
-App.controller('home', function (page) {
-	// var el = $(page).find('.upcoming');
-	// var el_ = $(page).finc('.attending');
-	
-	// var upcoming_list = $(el).find('event-list');
-	// var attending list = $(el_).find('event-list');
-
-	// var upcoming_events = api.getUpcomingEvents();
-	// var attending_events = api.getAttendingEvents();
-
-	// upcoming_events.forEach(function(obj){
-	// 	upcoming_list.append(eventView(obj.id, obj.img, obj.title));
-	// });
-
-	// attending_events.forEach(function(obj){
-	// 	attending_list.append(eventView(obj.id, obj.img, obj.title));
-	// });
-
-});
 
 $(".event-item").click(function(){
-	var id = $(this).id;
-	App.load('event', id);
+    var id = $(this).id;
+    App.load('event', id);
 });
+
+
+App.controller('home', function (page) {
+    console.log(document.userHasSession());
+    if (document.userHasSession())$($(page).find(".sign-in-home")).hide();
+    else $($(page).find(".account-home")).hide();
+
+    var el = $(page).find('.upcoming');
+    var upcoming_list = $(el).find('event-list');
+    
+    api.home.upcomingEvents(function (err, data){
+        if (err) console.error(err);
+        else if (data){
+            data.events.forEach(function(item){
+                upcoming_list.append(eventView(item.hash, item.img, item.title));
+            });
+        }
+    });
+  
+    if (document.userHasSession()){
+        currentUser = document.currentUser;
+        var el_ = $(page).find('.attending');
+        var attending_list = $(el_).find('event-list');
+        api.home.subscribedEvents(currentUser.hash, function (err, data){
+            if (err) console.error(err);
+            else if (data){
+                data.events.forEach(function(item){
+                    attending_list.append(eventView(item.hash, item.img, item.title));
+                });
+            }
+
+        });
+    }
 
 });
 
