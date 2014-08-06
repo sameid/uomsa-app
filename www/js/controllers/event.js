@@ -27,33 +27,50 @@ App.controller('event', function (page, id) {
 		if(response.success){
 			var data = response.data;
 			// $(page).find(".event-title").append(data.title);
-			$(page).find('.event-image').append('<img style="height:100%;width:100%;box-shadow: 0px 1px 10px #888888;" src="'+document.config.host +'/events/poster/'+ id.id+'" />');
+			$(page).find('.event-image').append('<img class="small-drop" style="height:100%;width:100%;" src="'+document.config.host +'/events/poster/'+ id.id+'" />');
 			$(page).find(".event-date").append(data.date);
 			$(page).find(".event-time").append("From: " + data.startTime + " | To: " + data.endTime);
 			$(page).find(".event-address").append(data.address);
-			$(page).find(".event-location").append(data.location);
 			$(page).find(".event-desc").append(data.description);
+
+			var latLng = new google.maps.LatLng(data.location.lat, data.location.lng);
+			var mapOptions = {
+				center: latLng,
+				zoom: 16
+			};
+
+			var map = new google.maps.Map(document.getElementById("event-map-canvas"), mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: latLng,
+				title:data.address			
+			});
+
+// To add the marker to the map, call setMap();
+marker.setMap(map);
 
 			$(page).find(".event-status").on('click', function (){
 				App.dialog({
 					title        : 'Select whether or not you want to join this event.',
-					orangeButton : 'Going',
-					redButton    : 'Maybe',
-					greenButton  : 'Not going',
+					goingButton : 'Going',
+					maybeButton    : 'Maybe',
+					notgoingButton  : 'Not going',
 				}, function (choice) {
 					switch (choice) {
-						case 'orange':
+						case 'going':
       						// do something
       						break;
-      					case 'red':
+      					case 'maybe':
       						// do something
       						break;
-      					case 'green':
+      					case 'notgoing':
       						// do something
       						break;
 			  		}
 				});
 			});
+
+
 		}
 		else {
 

@@ -85,6 +85,7 @@ App.controller('register', function (page) {
 						window.localStorage.setItem("isLoggedIn", true);
 						window.localStorage.setItem("currentUser", JSON.stringify(response.user));
 						App.load('home');
+
 					}
 					else {
 						console.log(response.responseText);

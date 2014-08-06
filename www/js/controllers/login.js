@@ -65,12 +65,12 @@ App.controller('login', function (page) {
 					console.log('Login Successful.');
 					window.localStorage.setItem("isLoggedIn", true);
 					window.localStorage.setItem("currentUser", JSON.stringify(response.user));
+					alert('Login Successful');
 					App.load('home');
 				}
 				else {
 					window.localStorage.setItem("isLoggedIn", false);
-					
-					// alert('Invalid email or password was provided.');
+					alert('Invalid email or password was provided.');
             	}
 
 				$("#spinner-sign-in").hide();
