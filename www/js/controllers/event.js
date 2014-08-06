@@ -33,21 +33,28 @@ App.controller('event', function (page, id) {
 			$(page).find(".event-address").append(data.address);
 			$(page).find(".event-desc").append(data.description);
 
-			var latLng = new google.maps.LatLng(data.location.lat, data.location.lng);
-			var mapOptions = {
-				center: latLng,
-				zoom: 16
-			};
+			if (data.location){
+				var canvas = document.getElementById("event-map-canvas")
+				canvas.setAttribute('style', "height:70%;width:100%");
+				canvas.className = canvas.className + " small-drop";
 
-			var map = new google.maps.Map(document.getElementById("event-map-canvas"), mapOptions);
+				var latLng = new google.maps.LatLng(data.location.lat, data.location.lng);
+				var mapOptions = {
+					center: latLng,
+					zoom: 16
+				};
 
-			var marker = new google.maps.Marker({
-				position: latLng,
-				title:data.address			
-			});
+				var map = new google.maps.Map(canvas, mapOptions);
 
-// To add the marker to the map, call setMap();
-marker.setMap(map);
+				var marker = new google.maps.Marker({
+					position: latLng,
+					title:data.address			
+				});
+
+				// To add the marker to the map, call setMap();
+				marker.setMap(map);
+			}
+			
 
 			$(page).find(".event-status").on('click', function (){
 				App.dialog({
