@@ -16,7 +16,7 @@ api.login = {
 				callback(err);
 			},
     		crossDomain: true,
-    		dataType:'application/x-www-form-urlencoded'
+    		dataType: 'form-data'
 		});
 	}
 }
@@ -25,14 +25,14 @@ api.login = {
 	
 App.controller('login', function (page) {
 
-	$("#spinner").hide()
+	$("#spinner-sign-in").hide();
 
 	$(page).find(".sign-in").on('click', function (){
 
 		var username = $(page).find(".username").val();
 		var password = $(page).find(".password").val();
 
-		$("#spinner").show();
+		$("#spinner-sign-in").show();
 		$(".creds").hide();
 
 		var opts = {
@@ -53,7 +53,7 @@ App.controller('login', function (page) {
   			top: '50%', // Top position relative to parent
   			left: '50%' // Left position relative to parent
 		};
-		var target = document.getElementById('spinner');
+		var target = document.getElementById('spinner-sign-in');
 		var spinner = new Spinner(opts).spin(target);
 
 		document.api.login.authenticate(username, password, function (data){
@@ -62,17 +62,18 @@ App.controller('login', function (page) {
 			setTimeout(function (){
 
 				if (response.success){
-					console.log('success');
+					console.log('Login Successful.');
 					window.localStorage.setItem("isLoggedIn", true);
 					window.localStorage.setItem("currentUser", JSON.stringify(response.user));
 					App.load('home');
 				}
 				else {
 					window.localStorage.setItem("isLoggedIn", false);
-
+					
+					// alert('Invalid email or password was provided.');
             	}
 
-				$("#spinner").hide();
+				$("#spinner-sign-in").hide();
 				$(".creds").show();
             	spinner.spin();
             }, 1000);

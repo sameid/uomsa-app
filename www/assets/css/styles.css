@@ -47,6 +47,7 @@
 
 .event-list {
     height: 295px;
+    width: 1000px;
     /*background: #E8EAEF;*/
     background-image: url('../pics/whitey.png');
     background-repeat:repeat;

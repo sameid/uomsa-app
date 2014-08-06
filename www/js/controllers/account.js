@@ -19,16 +19,16 @@ api.account = {
 
 
 App.controller('account', function (page) {
-	var user = currentUser();
+	var user = document.currentUser();
 
 	if (user){
-		$(page).find(".name").text(user.firstname + " " + user.lastname);
-		$(page).find(".id").text(user.studentid);
-		$(page).find(".email").text(user.email);
+		$(page).find(".name").html("<b>Name: </b>" + user.firstname + " " + user.lastname);
+		$(page).find(".id").html("<b>Student ID: </b>" + user.studentid);
+		$(page).find(".email").html("<b>Email: </b>" + user.email);
 	}
 
 	$(page).find('.sign-out').on('click', function (){
-		api.account.logout(function (data){
+		document.api.account.logout(function (data){
 			var response = JSON.parse(data.responseText);
 			if (response.success){
 				window.localStorage.setItem("isLoggedIn", false);
