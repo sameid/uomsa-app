@@ -1,5 +1,9 @@
 var api = document.api;
 
+var STATUS_GOING = 'going';
+var STATUS_MAYBE = 'maybe';
+var STATUS_NOT_GOING = 'not-going';
+
 api.event = {
 	findEventById: function(id, callback){
 		$.ajax({
@@ -15,19 +19,81 @@ api.event = {
             contentType: 'application/json',
             dataType: 'json'
         });
+	},
+	userStatus: function (event_id, user_id, new_status, callback){
+		$.ajax({
+			type:'POST',
+			url: document.config.host + '/events/status',
+			data: {
+				'event_hash': event_id,
+				'user_hash': user_id,
+				'status': new_status
+			},
+			success:function(data){
+				callback(data);
+			},
+			error:function(err){
+				callback(err);
+			},
+			crossDomain: true,
+			dataType:'form-data'
+		});
+	},
+	getUserStatus: function (event_id, user_id, callback){
+		$.ajax({
+			type:'GET',
+			url:document.config.host + '/events/status',
+			data: {
+				'event_hash': event_id,
+				'user_hash': user_id
+			},
+			success:function(data){
+                callback(data);
+            },
+            error:function(err){
+                callback(err);
+            },
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: 'form-data'
+		})
 	}
+
 }
 
 
 App.controller('event', function (page, id) {
-	console.log(id.id);
-	// var _event = api.getEventById(id);
+	var eventId = id.id;
+	var userId;
+	if (document.currentUser()){
+		userId = document.currentUser().hash;
+	}
 
-	document.api.event.findEventById(id.id, function (response){
+	document.api.event.findEventById(eventId, function (response){
 		if(response.success){
+
+			document.api.event.getUserStatus(eventId, userId, function (_response){
+				_data = JSON.parse(_response.responseText);
+				if (_data.success){
+					if (_data.status == STATUS_GOING){
+						$(page).find('.event-status').empty();
+						$(page).find('.event-status').append('RSVP - Going');
+					}
+					else if (_data.status == STATUS_MAYBE){
+						$(page).find('.event-status').empty();
+						$(page).find('.event-status').append('RSVP - Maybe');
+					}
+					else if (_data.status == STATUS_NOT_GOING){
+						$(page).find('.event-status').empty();
+						$(page).find('.event-status').append('RSVP - Not Going');
+					}
+				}
+
+			});
+
 			var data = response.data;
 			// $(page).find(".event-title").append(data.title);
-			$(page).find('.event-image').append('<img class="small-drop" style="height:100%;width:100%;" src="'+document.config.host +'/events/poster/'+ id.id+'" />');
+			$(page).find('.event-image').append('<img class="small-drop" style="height:100%;width:100%;" src="'+document.config.host +'/events/poster/'+eventId+'" />');
 			$(page).find(".event-date").append(data.date);
 			$(page).find(".event-time").append("From: " + data.startTime + " | To: " + data.endTime);
 			$(page).find(".event-address").append(data.address);
@@ -65,13 +131,33 @@ App.controller('event', function (page, id) {
 				}, function (choice) {
 					switch (choice) {
 						case 'going':
-      						// do something
+							document.api.event.userStatus(eventId, userId, STATUS_GOING, function(response){
+								if (response.success){
+									$(page).find('.event-status').empty();
+									$(page).find('.event-status').append('RSVP - Going');
+								}
+								else {
+									//perform some alert
+								}
+							});
       						break;
       					case 'maybe':
-      						// do something
+      						document.api.event.userStatus(eventId, userId, STATUS_MAYBE, function(response){
+      							if (response.success){
+									$(page).find('.event-status').empty();
+									$(page).find('.event-status').append('RSVP - Maybe');
+      							}
+      							else {
+      								alert('')
+      							}
+							});
       						break;
       					case 'notgoing':
-      						// do something
+      						document.api.event.userStatus(eventId, userId, STATUS_NOT_GOING, function(response){
+      							//don't forget to check response 
+								$(page).find('.event-status').empty();
+								$(page).find('.event-status').append('RSVP - Not Going');
+							});
       						break;
 			  		}
 				});
