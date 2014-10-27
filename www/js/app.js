@@ -79,7 +79,7 @@
         host: "http://jamaa.jit.su/api",
     }
 
-    var e = DEVELOPMENT;
+    var e = PRODUCTION;
     document.config = {
         host: e.host
     }
