@@ -56,11 +56,11 @@
 
     /* ---------------------------------- Local Functions ---------------------------------- */
 
-    document.userHasSession = function (){
-        var hasSession = window.localStorage.getItem("isLoggedIn");
-        if (hasSession == "true") return true;
-        else return false;
-    }
+    // document.userHasSession = function (){
+    //     var hasSession = window.localStorage.getItem("isLoggedIn"); 
+    //     if (hasSession == "true") return true;
+    //     else return false;
+    // }
 
     document.currentUser = function (){
         var user  = window.localStorage.getItem("currentUser");
@@ -68,17 +68,20 @@
         else return false
     }
 
+    document.apiKey = "87fe3910-5978-11e4-8ed6-0800200c9a66";
+
     var DEVELOPMENT = {
-        host: "http://192.168.0.13:3000/api"
+        host: "http://192.168.0.12:8080/api"
         // host: "http://192.168.2.54:8080/api"
     }
 
     var PRODUCTION = {
-
+        host: "http://jamaa.jit.su/api",
     }
 
+    var e = DEVELOPMENT;
     document.config = {
-        host: DEVELOPMENT.host
+        host: e.host
     }
 
     document.api = {}

@@ -6,8 +6,9 @@ api.login = {
 			type:'POST',
 			url: document.config.host + '/login',
 			data: {
-				'username':username,
-				'password':password
+				'email':username,
+				'password':password,
+				'api_key': document.apiKey
 			},
 			success:function(data){
 				callback(data);
@@ -29,7 +30,7 @@ App.controller('login', function (page) {
 
 	$(page).find(".sign-in").on('click', function (){
 
-		var username = $(page).find(".username").val();
+		var email = $(page).find(".username").val();
 		var password = $(page).find(".password").val();
 
 		$("#spinner-sign-in").show();
@@ -56,7 +57,8 @@ App.controller('login', function (page) {
 		var target = document.getElementById('spinner-sign-in');
 		var spinner = new Spinner(opts).spin(target);
 
-		document.api.login.authenticate(username, password, function (data){
+		document.api.login.authenticate(email, password, function (data){
+			console.log(data);
 			var response = JSON.parse(data.responseText);
 			
 			setTimeout(function (){
@@ -65,6 +67,7 @@ App.controller('login', function (page) {
 					console.log('Login Successful.');
 					window.localStorage.setItem("isLoggedIn", true);
 					window.localStorage.setItem("currentUser", JSON.stringify(response.user));
+					document.accessToken = response.user.access_token;
 					alert('Login Successful');
 					App.load('home');
 				}

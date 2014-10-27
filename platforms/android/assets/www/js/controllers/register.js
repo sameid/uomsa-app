@@ -1,23 +1,3 @@
-var api = document.api;
-
-api.register = {
-	createUser: function(data, callback){
-		$.ajax({
-			type:'POST',
-			url: document.config.host + '/users',
-			data :data,
-			success:function(data){
-				callback(null, data);
-			},
-			error:function(err){
-				callback(err, null);
-			},
-    		crossDomain: true,
-    		dataType: 'form-data'
-		});
-	}
-}
-
  
 App.controller('register', function (page) {
 
@@ -67,13 +47,13 @@ App.controller('register', function (page) {
 		else if (regexEmailCheck) alert("You must enter a valid uOttawa Email Address");
 		else {
 			console.log('successful register');
-			document.api.register.createUser({
+			_POST('/user', {
 				'firstname':firstname,
 				'lastname':lastname,
 				'studentNumber': studentNumber,
 				'email':email,
 				'password':password
-			}, function (data){
+			}, 'form-data',function (data){
 
 				setTimeout(function() {
 					console.log(data);

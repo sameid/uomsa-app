@@ -1,4 +1,4 @@
-var STATUS_GOING = 'going';
+  var STATUS_GOING = 'going';
 var STATUS_MAYBE = 'maybe';
 var STATUS_NOT_GOING = 'not-going';
 
@@ -6,7 +6,7 @@ App.controller('event', function (page, id) {
 	var eventId = id.id;
 	var userId;
 	if (document.currentUser()){
-		userId = document.currentUser().hash;
+		userId = document.currentUser()._id;
 		$(page).find('.event-signin').hide();
 	}
 	else {
@@ -16,18 +16,25 @@ App.controller('event', function (page, id) {
 	 _GET('/event/' + eventId, 'json', function (response){
 		if(response){
 
-			_GET('/event/status/'+ eventId + '/' + userId, 'json', function (_response){
+			_GET('/_status/' + eventId + '/' + userId, 'json', function (_response){
 				console.log(_response);
 				var _data = _response;
-				if (_data.success){
+				if (_data){
+					var s = ""
+					if (_data.type == 'going') s = "RSVP - Going (In shaa Allah)";
+					else if (_data.type == 'maybe') s = "RSVP - Maybe";
 					$(page).find('.event-status').empty();
-					$(page).find('.event-status').append(_data.status);
+					$(page).find('.event-status').append(s);
+				}
+				else {
+					$(page).find('.event-status').empty();
+					$(page).find('.event-status').append("RSVP - Not Going");
 				}
 			});
 
 			var data = response;
 			// $(page).find(".event-title").append(data.title);
-			$(page).find('.event-image').append('<img class="small-drop" style="height:100%;width:100%;" src="'+document.config.host +'/events/'+eventId+'/poster" />');
+			$(page).find('.event-image').append('<img class="small-drop" style="height:100%;width:100%;" src="'+document.config.host +'/event/'+eventId+'/poster" />');
 			$(page).find(".event-date").append(moment(data.date).format("dddd, MMMM Do YYYY"));
 			$(page).find(".event-time").append("From: " + data.startTime + " | To: " + data.endTime);
 			$(page).find(".event-address").append(data.address);
@@ -65,7 +72,7 @@ App.controller('event', function (page, id) {
 				}, function (choice) {
 					switch (choice) {
 						case 'going':
-							_POST( '/events/status', {'event_hash': eventId,'user_hash': userId,'status': STATUS_GOING}, 'form-data', function(response){
+							_POST( '/status', {'event_id': eventId,'user_id': userId,'type': STATUS_GOING}, 'form-data', function(response){
 								if (response.success){
 									$(page).find('.event-status').empty();
 									$(page).find('.event-status').append('RSVP - Going');
@@ -76,7 +83,7 @@ App.controller('event', function (page, id) {
 							});
       						break;
       					case 'maybe':
-      						_POST( '/events/status', {'event_hash': eventId,'user_hash': userId,'status': STATUS_MAYBE}, 'form-data', function(response){
+      						_POST( '/status', {'event_id': eventId,'user_id': userId,'type': STATUS_MAYBE}, 'form-data', function(response){
 								if (response.success){
 									$(page).find('.event-status').empty();
 									$(page).find('.event-status').append('RSVP - Maybe');
@@ -87,7 +94,7 @@ App.controller('event', function (page, id) {
 							});
       						break;
       					case 'notgoing':
-      						_POST( '/events/status', {'event_hash': eventId,'user_hash': userId,'status': STATUS_NOT_GOING}, 'form-data', function(response){
+      						_DELETE( '/_status/'+eventId+'/'+userId, {}, 'form-data', function(response){
 								//don't forget to check response 
 								$(page).find('.event-status').empty();
 								$(page).find('.event-status').append('RSVP - Not Going');

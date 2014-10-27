@@ -116,10 +116,10 @@
     <div class="app-page" data-page="edit-account">
         <div class="app-topbar red">
             <div class="app-button left" data-back data-autotitle></div>
-            <div class="app-title">Edit Account</div>
+            <div class="app-title">Change Password</div>
         </div>
         <div class="app-content">
-            <div class="app-section change-creds">
+        <!--     <div class="app-section change-creds">
                 <ul class="fit">
                     <li><span>Firstname:</span><input class="app-input firstname-edit" placeholder="First Name" ></li>
                     <li><span>Lastname:</span><input class="app-input lastname-edit" placeholder="Last Name" ></li>
@@ -128,7 +128,7 @@
                 </ul>
                 <input class="app-input confirm-pass" type="password" placeholder="Confirm Password" >
                 <div class="app-button green save-changes">Save changes.</div>
-            </div>
+            </div> -->
 
             <div class="app-section change-pass">
                 <input class="app-input password-old" type="password" placeholder="Old Password" >
@@ -206,11 +206,11 @@
 
     <script src="cordova.js"></script>
 
-<!--    <script src="lib/jquery.js"></script>
-   <script src="lib/jquery.transit.min.js"></script> -->
-   <script src="lib/zepto.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <!--<script src="js/adapters/memory-adapter.js"></script>-->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/jquery.transit.min.js"></script> 
+    <!--<script src="lib/zepto.js"></script>-->
+    <script src="lib/fastclick.js"></script> 
+    <script src="js/adapters/memory-adapter.js"></script>
     <script src="lib/app.min.js"></script>
     <script src="lib/spin.min.js"></script>
     <script src="lib/moment.min.js"></script>
@@ -225,9 +225,67 @@
     <script src="js/controllers/register.js"></script>
     <script src="js/controllers/account.js"></script>
     <script src="js/controllers/edit-account.js"></script>
-
+    <script src="lib/PushNotification.js"></script>
     <script>
     // $('#hook').hook();
+    var regId;
+    var userId;
+    function onNotificationGCM (e) {
+        if (e.event == 'registered'){
+            if ( e.regid.length > 0 ){
+                regId = e.regid;
+                console.log("Regid " + e.regid);
+                
+                if (document.currentUser())userId = document.currentUser()._id;
+                else userId = null;
+                // alert('registration id = '+e.regid);
+                
+                $.ajax({
+                    type:'POST',
+                    url: document.config.host + '/registerDevice',
+                    data: {
+                        'reg_id':regId,
+                        'user_id':userId
+                    },
+                    success:function(data){
+                        console.log(data);
+                    },
+                    error:function(err){
+                        console.log(err);
+                    },
+                    crossDomain: true,
+                    dataType: 'form-data'
+                });
+
+            }
+        }
+        else if (e.event == 'message'){
+            
+            alert(e.payload.title +': '+e.payload.message);
+            var s = new Media('./beep.wav');
+            s.play();
+        }
+    }
+
+    document.addEventListener('deviceready', function(){
+        
+        var pushNotification = window.plugins.pushNotification;
+
+        pushNotification.register(
+            function(result) {
+                    // alert('Callback Success! Result = '+result)
+            },
+            function(error) {
+                    // alert(error);
+            },
+            {
+                "senderID":"403989106949",
+                "ecb":"onNotificationGCM"
+            }
+        );
+        
+    }, true);
+
     try {
         App.restore();
 

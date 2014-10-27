@@ -1,23 +1,3 @@
-var api = document.api;
-
-api.account = {
-	logout : function (callback){
-		$.ajax({
-			type:'GET',
-			url: document.config.host + '/logout',
-			success:function(data){
-				callback(data);
-			},
-			error:function(err){
-				callback(err);
-			},
-    		crossDomain: true,
-    		dataType:'application/x-www-form-urlencoded'
-		});
-	}
-}
-
-
 App.controller('account', function (page) {
 	var user = document.currentUser();
 
@@ -28,10 +8,9 @@ App.controller('account', function (page) {
 	}
 
 	$(page).find('.sign-out').on('click', function (){
-		document.api.account.logout(function (data){
+		_POST('/logout', {'access_token': document.accessToken }, 'form-data', function (data){
 			var response = JSON.parse(data.responseText);
-			if (response.success){
-				window.localStorage.setItem("isLoggedIn", false);
+			if (response){
 				window.localStorage.clear("currentUser");
 				App.load("home");
 			}
