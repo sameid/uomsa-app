@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="assets/css/app.min.css" >
     <link rel="stylesheet" href="assets/css/styles.css" >
-    <link rel="stylesheet" href="lib/hookjs/hook.css" >
+    <link rel="stylesheet" href="lib/pull/pull-to-refresh.css">
+    <!-- <link rel="stylesheet" href="lib/hookjs/hook.css" > -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css' >
 
     
@@ -23,46 +24,48 @@
     <!-- Home Page ----------------------------------------------------------------------------------------- -->
     <div class="app-page" data-page="home">
         <div class="app-topbar red">
-            <p class="app-title home-title"><img src="assets/pics/logo.png" 
-            style="margin-left:-10%;padding-top:7%;width:35px;height:35px;float:left"><span style="float:right;">uomsa</span></p>
+            <div class="app-title home-title">
+                <img src="assets/pics/logo.png" style="margin-left:-10%;padding-top:7%;width:35px;height:35px;float:left">
+                <span style="float:right;">uomsa</span>
+            </div>
             <div class="right app-button  sign-in-home" data-target="login">Sign In</div>
             <div class="right app-button account-home" data-target="account">My Account</div>
         </div>
-        <br>
-
-        <div class="app-content app-scrollable">
-
-            <div class="hook" id="hook"> test item</div>
-            <div class="label-app-section"><div class="title-app-section">Updates</div></div>
-            <div class="app-section">
-                Welcome to the uomsa app. You can access, and sign up for events.
-            </div>
-            <div class="events">
-
-                <div class="event upcoming">
-                    <div class="label">
-                        <div class="title">Upcoming Events</div>
+        <div class="scrollable"> 
+            <div class="wrap">
+                <div class="app-content app-scrollable">
+                    <div class="label-app-section"><div class="title-app-section">Updates</div></div>
+                    <div class="app-section">
+                        Welcome to the uomsa app. You can access, and sign up for events.
                     </div>
-                    <div class="event-list-wrap" style="overflow: scroll">
-                        <div class="event-list upcoming-list">
-                             
+                    <div class="events">
+
+                        <div class="event upcoming">
+                            <div class="label">
+                                <div class="title">Upcoming Events</div>
+                            </div>
+                            <div class="event-list-wrap" style="overflow: scroll">
+                                <div class="event-list upcoming-list">
+
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="event attending">
+                            <div class="label">
+                                <div class="title">Attending</div>
+                            </div>
+                            <div class="event-list-wrap" style="overflow: scroll">
+                                <div class="event-list attending-list"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="app-section">
+                        <i>Disclaimer: This App is still in beta, and under development. There may be bugs and hiccups as you use the App.
+                            Jazakhalahu Khairun for your co-operation. </i>
                     </div>
                 </div>
-
-                <div class="event attending">
-                    <div class="label">
-                        <div class="title">Attending</div>
-                    </div>
-                    <div class="event-list-wrap" style="overflow: scroll">
-                        <div class="event-list attending-list"></div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="app-section">
-                <i>Disclaimer: This App is still in beta, and under development. There may be bugs and hiccups as you use the App.
-                Jazakhalahu Khairun for your co-operation. </i>
             </div>
         </div>
     </div>
@@ -210,7 +213,8 @@
 
     <script src="cordova.js"></script>
 
-    <script src="lib/jquery.js"></script>
+    <script src="lib/jquery-2.1.1.min.js"></script>
+    <script src="lib/pull/jquery.plugin.pullToRefresh.js"></script>
     <script src="lib/jquery.transit.min.js"></script> 
     <!--<script src="lib/zepto.js"></script>-->
     <script src="lib/fastclick.js"></script> 
@@ -289,6 +293,7 @@
         );
         
     }, true);
+
 
     try {
         App.restore();

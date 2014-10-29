@@ -1,8 +1,26 @@
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes.dex : \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\BuildConfig.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\Manifest$permission.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\Manifest.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\R$attr.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\R$drawable.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\R$string.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\R$xml.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\R.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\kuficoding\uomsa\Workshop.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\plugin\gcm\CordovaGCMBroadcastReceiver.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\plugin\gcm\GCMIntentService.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\plugin\gcm\PushHandlerActivity.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\plugin\gcm\PushPlugin.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\BuildConfig.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\Manifest$permission.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\Manifest.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\R$attr.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\R$drawable.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\R$string.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\R$xml.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\R.class \
+C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\sameidusmani\uomsa\Workshop.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\yourname\workshop\BuildConfig.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\yourname\workshop\Manifest$permission.class \
 C:\Users\sameid\Dropbox\uomsa-app\app\platforms\android\ant-build\classes\com\yourname\workshop\Manifest.class \

@@ -20,6 +20,21 @@
                 });
             }
 
+
+
+    $('.scrollable').pullToRefresh({
+        callback: function() {
+            consoll.log('test');
+            var def = $.Deferred();
+
+            setTimeout(function() {
+                def.resolve();      
+            }, 3000); 
+
+            return def.promise();
+        }
+    });
+
     // document.addEventListener('deviceready', function () {
     //     FastClick.attach(document.body);
     //     if (navigator.notification) { // Override default HTML alert with native dialog
@@ -79,7 +94,8 @@
         host: "http://jamaa.jit.su/api",
     }
 
-    var e = DEVELOPMENT;
+    // var e = PRODUCTION;
+    var e = PRODUCTION;
     document.config = {
         host: e.host
     }

@@ -67,7 +67,7 @@ App.controller('login', function (page) {
 					console.log('Login Successful.');
 					window.localStorage.setItem("isLoggedIn", true);
 					window.localStorage.setItem("currentUser", JSON.stringify(response.user));
-					document.accessToken = response.user.access_token;
+					window.localStorage.setItem("accessToken", response.user.access_token);
 					alert('Login Successful');
 					App.load('home');
 				}
